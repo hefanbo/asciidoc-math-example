@@ -1,0 +1,128 @@
+= Asciidoc Math Equation Examples
+:sectnums:
+:stem: latexmath
+:eqnums:
+
+[NOTE]
+====
+MathJax is required to display math equations. With asciidoctor, the generated html refers to online MathJax scripts, and therefore network connection is required to view math equations.
+====
+
+== Preamble
+These lines should be put at the beginning of the document.
+
+[source]
+----
+:stem: latexmath
+:eqnums:
+----
+
+== Inline Math
+.Input
+[source]
+----
+stem:[e^{i\pi}+1=0]
+
+latexmath:[a^2 + b^2 = c^2]
+----
+
+.Output
+[caption=""]
+====
+stem:[e^{i\pi}+1=0]
+
+latexmath:[a^2 + b^2 = c^2]
+====
+
+.Input
+[source]
+----
+latexmath:[H_2] and latexmath:[O_2] produce stem:[H_2O].
+----
+
+.Output
+[caption=""]
+====
+latexmath:[H_2] and latexmath:[O_2] produce stem:[H_2O].
+====
+
+== Display Math
+
+=== With equation numbers and cross reference anchors
+.Input
+[source]
+----
+[stem#maxwell]
+++++
+\newcommand{\Vect}[1]{\boldsymbol{#1}}
+\newcommand{\Div}{\nabla\cdot}
+\newcommand{\Rot}{\nabla\times}
+
+\begin{align}
+\Div \Vect{E} &= \frac{\rho}{\varepsilon_0} \label{eq:mx1}\\
+\Div \Vect{B} &= 0 \label{eq:mx2}\\
+\Rot \Vect{E} &= -\frac{\partial \Vect{B}}{\partial t} \label{eq:mx3}\\
+\Rot \Vect{B} &= \mu_0 \left(\Vect{J} + \varepsilon_0 \frac{\partial \Vect{E}}{\partial t} \right) \label{eq:mx4}
+\end{align}
+++++
+----
+
+.Output
+[caption=""]
+====
+[stem#maxwell]
+++++
+\newcommand{\Vect}[1]{\boldsymbol{#1}}
+\newcommand{\Div}{\nabla\cdot}
+\newcommand{\Rot}{\nabla\times}
+
+\begin{align}
+\Div \Vect{E} &= \frac{\rho}{\varepsilon_0} \label{eq:mx1}\\
+\Div \Vect{B} &= 0 \label{eq:mx2}\\
+\Rot \Vect{E} &= -\frac{\partial \Vect{B}}{\partial t} \label{eq:mx3}\\
+\Rot \Vect{B} &= \mu_0 \left(\Vect{J} + \varepsilon_0 \frac{\partial \Vect{E}}{\partial t} \right) \label{eq:mx4}
+\end{align}
+++++
+====
+
+=== Without equation numbers or cross reference anchors
+.Input
+[source]
+----
+[latexmath]
+++++
+\begin{align*}
+\Div \Vect{D} &= \rho \\
+\Div \Vect{B} &= 0 \\
+\Rot \Vect{E} &= -\frac{\partial \Vect{B}}{\partial t} \\
+\Rot \Vect{H} &= \Vect{J} + \frac{\partial \Vect{D}}{\partial t}
+\end{align*}
+++++
+----
+
+.Output
+[caption=""]
+====
+[latexmath]
+++++
+\begin{align*}
+\Div \Vect{D} &= \rho \\
+\Div \Vect{B} &= 0 \\
+\Rot \Vect{E} &= -\frac{\partial \Vect{B}}{\partial t} \\
+\Rot \Vect{H} &= \Vect{J} + \frac{\partial \Vect{D}}{\partial t}
+\end{align*}
+++++
+====
+
+=== Cross references
+.Input
+[source]
+----
+stem:[\eqref{eq:mx1}] - latexmath:[\eqref{eq:mx4}] are <<maxwell, Maxwell's equations>>.
+----
+
+.Output
+[caption=""]
+====
+stem:[\eqref{eq:mx1}] - latexmath:[\eqref{eq:mx4}] are <<maxwell, Maxwell's equations>>.
+====
